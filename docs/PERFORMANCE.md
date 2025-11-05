@@ -35,7 +35,7 @@
 
 #### 1.1 路由级代码分割
 
-```typescript
+\`\`\`typescript
 // Next.js 自动进行路由级代码分割
 app/
 ├── integrations/page.tsx    # 独立 chunk
@@ -52,11 +52,11 @@ export default {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 }
-```
+\`\`\`
 
 #### 1.2 组件级代码分割
 
-```typescript
+\`\`\`typescript
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
@@ -95,11 +95,11 @@ function Dashboard() {
     </div>
   )
 }
-```
+\`\`\`
 
 #### 1.3 第三方库优化
 
-```typescript
+\`\`\`typescript
 // ❌ 导入整个库
 import _ from 'lodash'
 
@@ -116,13 +116,13 @@ import { format, parseISO } from 'date-fns'
 // ✅ 使用轻量级替代方案
 import { clsx } from 'clsx' // 替代 classnames
 import { z } from 'zod' // 替代 Joi/Yup
-```
+\`\`\`
 
 ### 2. 图片优化
 
 #### 2.1 Next.js Image 组件
 
-```typescript
+\`\`\`typescript
 import Image from 'next/image'
 
 // ✅ 优化的图片加载
@@ -151,11 +151,11 @@ import Image from 'next/image'
   placeholder="blur"
   blurDataURL="data:image/jpeg;base64,..."
 />
-```
+\`\`\`
 
 #### 2.2 图片格式选择
 
-```typescript
+\`\`\`typescript
 // 优先级：WebP > AVIF > JPEG/PNG
 function OptimizedImage({ src, alt, width, height }: ImageProps) {
   return (
@@ -180,11 +180,11 @@ function OptimizedImage({ src, alt, width, height }: ImageProps) {
     </picture>
   )
 }
-```
+\`\`\`
 
 #### 2.3 懒加载和占位符
 
-```typescript
+\`\`\`typescript
 import { useState, useRef, useEffect } from 'react'
 
 function LazyImage({ src, alt, width, height }: ImageProps) {
@@ -241,13 +241,13 @@ function LazyImage({ src, alt, width, height }: ImageProps) {
     </div>
   )
 }
-```
+\`\`\`
 
 ### 3. 字体优化
 
 #### 3.1 Next.js 字体优化
 
-```typescript
+\`\`\`typescript
 // app/layout.tsx
 import { Inter, Roboto_Mono, Noto_Sans_SC } from 'next/font/google'
 
@@ -293,11 +293,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-```
+\`\`\`
 
 #### 3.2 CSS 字体声明优化
 
-```css
+\`\`\`css
 /* 使用 CSS 变量和字体回退 */
 :root {
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -326,13 +326,13 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-```
+\`\`\`
 
 ### 4. JavaScript 优化
 
 #### 4.1 防抖和节流
 
-```typescript
+\`\`\`typescript
 import { useCallback, useRef } from 'react'
 import debounce from 'lodash/debounce'
 import throttle from 'lodash/throttle'
@@ -394,11 +394,11 @@ function ScrollHandler() {
 
   return <div>滚动和调整大小处理组件</div>
 }
-```
+\`\`\`
 
 #### 4.2 虚拟滚动
 
-```typescript
+\`\`\`typescript
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useRef, useMemo } from 'react'
 
@@ -464,11 +464,11 @@ function VirtualizedIntegrationList({ integrations }: { integrations: any[] }) {
     </div>
   )
 }
-```
+\`\`\`
 
 #### 4.3 Web Workers 处理重型计算
 
-```typescript
+\`\`\`typescript
 // workers/data-processor.ts
 self.addEventListener('message', (e) => {
   const { data, type } = e.data
@@ -514,9 +514,9 @@ function calculateMetrics(data: any[]) {
     average: data.reduce((acc, item) => acc + item.value, 0) / data.length
   }
 }
-```
+\`\`\`
 
-```typescript
+\`\`\`typescript
 // 使用 Worker 的组件
 import { useState, useEffect, useRef } from 'react'
 
@@ -594,13 +594,13 @@ function DataProcessor({ data }: { data: any[] }) {
     </div>
   )
 }
-```
+\`\`\`
 
 ### 5. CSS 和渲染优化
 
 #### 5.1 Critical CSS 和内联样式
 
-```typescript
+\`\`\`typescript
 // next.config.mjs - 关键 CSS 配置
 export default {
   experimental: {
@@ -625,11 +625,11 @@ export default {
     },
   ],
 }
-```
+\`\`\`
 
 #### 5.2 优化 CSS-in-JS 使用
 
-```typescript
+\`\`\`typescript
 // ✅ 使用 Tailwind CSS（零运行时）
 function OptimizedCard({ title, content }: CardProps) {
   return (
@@ -656,9 +656,9 @@ function IntegrationCard({ integration }: { integration: any }) {
     </div>
   )
 }
-```
+\`\`\`
 
-```css
+\`\`\`css
 /* IntegrationCard.module.css */
 .card {
   background: white;
@@ -691,7 +691,7 @@ function IntegrationCard({ integration }: { integration: any }) {
   color: #6b7280;
   line-height: 1.5;
 }
-```
+\`\`\`
 
 ---
 
@@ -701,7 +701,7 @@ function IntegrationCard({ integration }: { integration: any }) {
 
 #### 1.1 HTTP 缓存头配置
 
-```typescript
+\`\`\`typescript
 // next.config.mjs - 缓存头配置
 export default {
   async headers() {
@@ -749,11 +749,11 @@ export default {
     ]
   }
 }
-```
+\`\`\`
 
 #### 1.2 数据缓存策略
 
-```typescript
+\`\`\`typescript
 // lib/cache.ts - Redis 缓存实现
 import Redis from 'ioredis'
 
@@ -803,9 +803,9 @@ export class CacheService {
 }
 
 export const cache = new CacheService()
-```
+\`\`\`
 
-```typescript
+\`\`\`typescript
 // 使用 SWR 进行客户端数据缓存
 import useSWR from 'swr'
 import { useState, useEffect } from 'react'
@@ -862,11 +862,11 @@ function IntegrationList() {
     </div>
   )
 }
-```
+\`\`\`
 
 #### 1.3 静态生成和增量静态再生
 
-```typescript
+\`\`\`typescript
 // 静态生成页面
 export const revalidate = 3600 // 1小时重新验证
 
@@ -930,13 +930,13 @@ async function getIntegration(id: string) {
   
   return integration
 }
-```
+\`\`\`
 
 ### 2. API 优化
 
 #### 2.1 数据预取和批量请求
 
-```typescript
+\`\`\`typescript
 // 预取相关数据
 export async function getIntegrationData(id: string) {
   const [integration, reviews, relatedIntegrations, usageStats] = await Promise.all([
@@ -977,11 +977,11 @@ export async function GET(
     )
   }
 }
-```
+\`\`\`
 
 #### 2.2 分页和无限滚动
 
-```typescript
+\`\`\`typescript
 // API 分页实现
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
@@ -1048,9 +1048,9 @@ export async function GET(request: NextRequest) {
     }
   })
 }
-```
+\`\`\`
 
-```typescript
+\`\`\`typescript
 // 前端无限滚动实现
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
@@ -1121,11 +1121,11 @@ function InfiniteIntegrationList() {
     </div>
   )
 }
-```
+\`\`\`
 
 #### 2.3 数据库查询优化
 
-```typescript
+\`\`\`typescript
 // 优化的数据库查询
 import { PrismaClient } from '@prisma/client'
 
@@ -1193,13 +1193,13 @@ export async function updateIntegrationStats(integrationIds: string[]) {
     return Promise.all(updatePromises)
   })
 }
-```
+\`\`\`
 
 ### 3. 性能监控和分析
 
 #### 3.1 性能监控集成
 
-```typescript
+\`\`\`typescript
 // lib/performance.ts - 性能监控工具
 class PerformanceMonitor {
   private metrics: Map<string, number> = new Map()
@@ -1256,9 +1256,9 @@ class PerformanceMonitor {
 }
 
 export const perfMonitor = new PerformanceMonitor()
-```
+\`\`\`
 
-```typescript
+\`\`\`typescript
 // 在组件中使用性能监控
 function OptimizedComponent() {
   useEffect(() => {
@@ -1274,7 +1274,7 @@ function OptimizedComponent() {
   
   return <div>优化组件</div>
 }
-```
+\`\`\`
 
 ---
 
@@ -1282,7 +1282,7 @@ function OptimizedComponent() {
 
 ### 1. CDN 和边缘计算
 
-```typescript
+\`\`\`typescript
 // next.config.mjs - CDN 配置
 export default {
   images: {
@@ -1295,11 +1295,11 @@ export default {
     runtime: 'edge',
   },
 }
-```
+\`\`\`
 
 ### 2. 环境特定优化
 
-```typescript
+\`\`\`typescript
 // lib/config.ts - 环境配置
 const config = {
   development: {
@@ -1323,7 +1323,7 @@ export const getConfig = () => {
   const env = process.env.NODE_ENV || 'development'
   return config[env as keyof typeof config]
 }
-```
+\`\`\`
 
 ---
 
@@ -1331,7 +1331,7 @@ export const getConfig = () => {
 
 ### 1. 自动化性能测试
 
-```typescript
+\`\`\`typescript
 // tests/performance.test.ts
 import { test, expect } from '@playwright/test'
 
@@ -1369,11 +1369,11 @@ test.describe('性能测试', () => {
     expect(response.status()).toBe(200)
   })
 })
-```
+\`\`\`
 
 ### 2. 实时性能监控
 
-```typescript
+\`\`\`typescript
 // components/PerformanceMonitor.tsx
 import { useEffect } from 'react'
 import { useReportWebVitals } from 'next/web-vitals'
@@ -1392,7 +1392,7 @@ export function PerformanceMonitor() {
 
   return null
 }
-```
+\`\`\`
 
 ---
 
